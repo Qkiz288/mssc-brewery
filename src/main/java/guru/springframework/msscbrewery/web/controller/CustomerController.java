@@ -5,7 +5,7 @@ import guru.springframework.msscbrewery.web.model.CustomerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RequestMapping("api/v1/customer")
@@ -24,14 +24,14 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerDto> createCustomer(@RequestBody CustomerDto customerDto) {
+    public ResponseEntity<CustomerDto> createCustomer(@Valid @RequestBody CustomerDto customerDto) {
         CustomerDto savedCustomer = customerService.save(customerDto);
         return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
     }
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCustomer(@PathVariable UUID customerId, @RequestBody CustomerDto customerDto) {
+    public void updateCustomer(@PathVariable UUID customerId, @Valid  @RequestBody CustomerDto customerDto) {
         customerService.updateCustomer(customerId, customerDto);
     }
 
