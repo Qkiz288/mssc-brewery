@@ -115,7 +115,7 @@ public class BeerControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
-        BDDMockito.then(beerService).shouldHaveZeroInteractions();//.should().save(ArgumentMatchers.any(BeerDto.class));
+        BDDMockito.then(beerService).shouldHaveZeroInteractions();
     }
 
 }
